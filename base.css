@@ -13,12 +13,13 @@ a { color:#000; text-decoration: none; }
 
 body { background-color: #eee; }
 
-#wrapper { width: 500px; margin: 20px auto 20px auto; border: 1px solid #aaa; padding: 10px; border-radius: 20px; background-color: #fff; }
+#wrapper { width: 650px; margin: 20px auto 20px auto; border: 1px solid #aaa; padding: 10px; border-radius: 20px; background-color: #fff; }
 #wrapper #header { height: 60px; font-family: "Helvetica Neue", helvetica, arial, sans-serif; font-weight:100; font-size: 50px; padding: 10px 20px; }
 #wrapper #header #authorlabel { font-size: 15px; }
-#wrapper #workpanel { width: 478px; height: 300px; padding: 0; margin: 0px 10px 20px 10px; border: 1px solid #aaa; }
-#wrapper #editpanel { width: 478px; height: 170px; padding: 0; margin: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border: 1px solid #aaa; }
-#wrapper #editpanel #tabbar { height: 25px; background: #fafafa; border-bottom: 1px solid #aaa; }
+#wrapper #workpanel { float:left; width: 398px; height: 300px; padding: 0; margin: 0 10px 20px 10px; border: 1px solid #aaa; }
+#wrapper #tools { float: right; width: 208px; height: 300px; margin: 0 10px 20px 10px; border: 1px solid #aaa; }
+#wrapper #snippet { width: 608px; height: 100px; padding: 10px; margin: 10px; margin-top: 0; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border: 1px solid #aaa; font-family: "Courier New"; font-size: 14px; }
+/*#wrapper #editpanel #tabbar { height: 25px; background: #fafafa; border-bottom: 1px solid #aaa; }
 
 
 
