@@ -1,3 +1,8 @@
+var trans[]; // Global transformation functions
+var I = [[1,0,0],[0,1,0],[0,0,1]]; // Identity matrix
+
+// -----------------------------------
+// Matrix Modification
 
 function multM(a,b) {
 	var m = [[0,0,0],[0,0,0],[0,0,0]];
@@ -18,8 +23,8 @@ function translate(n,x,y) {
 	return m;
 }
 
-function scale(n,f) {
-	m = [[f,0,0],[0,f,0],[0,0,1]];
+function scale(n,x,y) {
+	m = [[x,0,0],[0,y,0],[0,0,1]];
 	return multM(n,m);
 }
 
@@ -29,19 +34,51 @@ function rotate(n,d) {
 	return multM(n,m);
 }
 
-function skew() {
-	
+function skew(n,x,y) {
+	rx = x*(Math.PI/180);
+	ry = y*(Math.PI/180);
+	m = [[1,Math.tan(rx),0],[Math.tan(ry),1,0],[0,0,1]];
+	return multM(n,m);
 }
 
+// -----------------------------------
+// Functionality and Calculation
+// Transformation type:
+// 0 - Translate 	(x,y)
+// 1 - Scale 		(scalex,scaley)
+// 2 - Rotate 		(deg)
+// 3 - Skew 		(degx,degy)
 
-// Adding transformations
-// 1 - Translate 	(x,y)
-// 2 - Scale 		(scale)
-// 3 - Rotate 		(deg)
-// 4 - Skew 		(degx,degy)
+function Transformation(t,arg1,arg2) {
+	this.trans = t;
+	this.arg1 = arg1;
+	this.arg2 = arg2;
+}
+
+function addTransformation(t,arg1,arg2) {
+	m = new Transformation(t,arg1,arg2);
+	trans.push(m);
+}
+
+function removeTransformation(n) {
+
+}
+
+function calculateTransformation() {
+
+
+}
+
+// -----------------------------------
+// Porting to View
+
 function addToPage(transformation) {
 
 
+}
+
+function displayTransformation() {
+	obj = $("#wrapper #workpanel #object");
 }
 
 function alertM(m) {
@@ -50,11 +87,12 @@ function alertM(m) {
     alert(s);
 }
 
-
+// -----------------------------------
+// jQuery Document Ready
 
 $(document).ready(function() {
+	trans = new Array();
 
-	var I = [[1,0,0],[0,1,0],[0,0,1]];
 
 	
 

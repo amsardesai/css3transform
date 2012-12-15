@@ -20,7 +20,8 @@ body { font-family: "Donegal One", helvetica, arial, sans-serif; }
 #header { height: 60px; padding: 10px 10px 0 30px; border-bottom: 1px solid #aaa;  margin: 0; background-color: #eee; font-weight:100; font-size: 50px; overflow:hidden; }
 #header #authorlabel { font-size: 25px; }
 #wrapper { width: 650px; margin: 0 auto; padding: 0; /* border: 1px solid #aaa; border-radius: 20px; background-color: #fff; */ }
-#wrapper #workpanel { float: left; width: 348px; height: 300px; padding: 0; margin: 20px 10px 10px 10px; border: 1px solid #aaa; }
+#wrapper #workpanel { float: left; width: 348px; height: 300px; padding: 0; margin: 20px 10px 10px 10px; border: 1px solid #aaa; overflow:scroll; }
+#wrapper #workpanel #object { margin: auto; display:block; }
 #wrapper #toolslist { float: right; width: 258px; height: 183px; padding: 0; margin: 20px 10px 10px 10px; border: 1px solid #aaa; overflow: hidden;}
 #wrapper #toolsused { float: right; width: 258px; height: 237px; padding: 0; margin: 10px; border: 1px solid #aaa; overflow:scroll; }
 #wrapper .transformation { height: 35px; margin: 5px 0 0 0; padding: 0 10px 5px 10px; color: #aaa; border-bottom: 1px solid #aaa; cursor: pointer; }
