@@ -1,3 +1,6 @@
+@import url(http://fonts.googleapis.com/css?family=Donegal+One);
+
+
 /* CSS RESET */
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
@@ -8,19 +11,23 @@ blockquote, q { quotes: none; }
 blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
 table { border-collapse: collapse; border-spacing: 0; }
 a { color:#000; text-decoration: none; }
+input, select, textarea, button{ font-family: inherit; }
 
 /* CODE */
 
-body {  }
+body { font-family: "Donegal One", helvetica, arial, sans-serif; }
 
-#header { height: 60px; padding: 10px 10px 0 10px; border-bottom: 1px solid #000;  margin: 0; background-color: #eee; font-family: "Helvetica Neue", helvetica, arial, sans-serif; font-weight:100; font-size: 50px; }
+#header { height: 60px; padding: 10px 10px 0 10px; border-bottom: 1px solid #aaa;  margin: 0; background-color: #eee; font-weight:100; font-size: 50px; }
 #header #authorlabel { font-size: 25px; }
-#wrapper { width: 650px; margin: 20px auto 20px auto; padding: 10px; /* border: 1px solid #aaa; border-radius: 20px; background-color: #fff; */ }
-#wrapper #workpanel { float: left; width: 348px; height: 300px; padding: 0; margin: 10px; border: 1px solid #aaa; }
-#wrapper #toolslist { float: right; width: 258px; height: 210px; padding: 0; margin: 10px; border: 1px solid #aaa; }
-#wrapper #toolslist #toolshead { border-bottom: 1px solid #aaa; color: #aaa; padding: 5px; font-family: "Helvetica Neue", helvetica, arial, sans-serif; font-weight:100; font-size: 20px; }
-#wrapper #toolslist #listcontainer { height: 179px; overflow: auto; }
-#wrapper #toolsused { float: right; width: 258px; height: 211px; padding: 0; margin: 10px; border: 1px solid #aaa; }
+#wrapper { width: 650px; margin: 0 auto; padding: 0; /* border: 1px solid #aaa; border-radius: 20px; background-color: #fff; */ }
+#wrapper #workpanel { float: left; width: 348px; height: 300px; padding: 0; margin: 20px 10px 10px 10px; border: 1px solid #aaa; }
+#wrapper #toolslist { float: right; width: 258px; height: 183px; padding: 0; margin: 20px 10px 10px 10px; border: 1px solid #aaa; }
+#wrapper #toolsused { float: right; width: 258px; height: 237px; padding: 0; margin: 10px; border: 1px solid #aaa; overflow: hidden; }
+#wrapper .transformation { height: 35px; margin: 5px 0 0 0; padding: 0 10px 5px 10px; color: #aaa; border-bottom: 1px solid #aaa; cursor: pointer; }
+#wrapper .transformation:hover { color: #666; }
+#wrapper .transformation span { margin:0; padding:0; padding-top: 10px; float:left; display:block; width: 110px; }
+#wrapper .transformation .input { font-size: 14px; float: right; margin: 5px 0 5px 5px; }
+#wrapper .transformation .input input { font-size: 14px; color: inherit; width: 25px; border: 0; padding: 5px; margin:0; }
 #wrapper #snippet { float: left; width: 348px; height: 120px; margin: 10px; border: 1px solid #aaa;  }
 #wrapper #snippet textarea { margin: 0; padding: 0; border: 0; font-family: "Courier New"; font-size: 14px; }
 /*#wrapper #editpanel #tabbar { height: 25px; background: #fafafa; border-bottom: 1px solid #aaa; }
