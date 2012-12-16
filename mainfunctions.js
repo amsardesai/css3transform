@@ -5,7 +5,7 @@
 
 var trans; // Global transformation array
 var I = [[1,0,0],[0,1,0],[0,0,1]]; // Identity matrix
-var curTrans = [[0,0,0],[0,0,0],[0,0,0]]; // Current transformation
+var curTrans = [[1,0,0],[0,1,0],[0,0,1]]; // Current transformation
 
 // -----------------------------------
 // Matrix Modification
@@ -111,7 +111,12 @@ function addToPage(transformation) {
 
 function displayTransformation() {
 	var obj = $("#workpanel #object");
+	var wWidth = $("#workpanel").width();
+	var wHeight = $("#workpanel").height();
+	var oWidth = obj.width();
+	var oHeight = obj.height();
 	var e = copyM(curTrans);
+	e = translate(e,wWidth/2-oWidth/2,wHeight/2-oHeight/2);
 	var mat = "matrix("+e[0][0]+","+e[1][0]+","+e[0][1]+","+e[1][1]+","+e[0][2]+","+e[1][2]+")";
 	obj.css("transform",mat);
 }
@@ -130,7 +135,8 @@ function alertM(m) {
 
 $(document).ready(function() {
 	trans = new Array();
-	$("#tools .transformation").attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false);
+	$("#tools .transformation").attr('unselectable','on').css('user-select','none').on('selectstart',false);
+	displayTransformation();
 
 	$("#tools #toolslist .transformation").click(function() {
 		$();
@@ -157,6 +163,16 @@ $(document).ready(function() {
 		}
 
 	});	
+
+	$(window).resize(displayTransformation);
+
+	$("#tools .transformation input").autoGrowInput({
+		maxWidth: 40,
+		minWidth: 0,
+		comfortZone: 0
+	});
+
+
 });
 
 

@@ -15,24 +15,28 @@ input, select, textarea, button{ font-family: inherit; }
 
 /* CODE */
 
-body { font-family: "Donegal One", helvetica, arial, sans-serif; }
+body { font-family: "Donegal One", helvetica, arial, sans-serif; background-color: #EEEEEE;  }
 
 #header { position: absolute; top:0; left:0; right:0; height: 60px; padding: 10px 10px 0 30px; border-bottom: 1px solid #000;  margin: 0; background-color: #AAAAAA; font-weight:100; font-size: 50px; overflow:hidden; min-width: 640px; }
 #header #authorlabel { font-size: 25px; }
-#workpanel { position: absolute; left:0; bottom:0; right:0; top: 71px; margin:0; padding: 0; overflow:scroll; background-color: #EEEEEE; }
-#workpanel #object { width: 100px; height: 100px; display:block; transform-origin: 50% 50%; }
-#tools { position: fixed; right: 0; bottom:110px;  top: 71px; width: 300px; }
+#workpanel { position: absolute; left:0; bottom:120px; right:350px; top: 71px; margin:0; padding: 0; overflow:scroll; }
+#workpanel #object { width: 100px; height: 100px; display:block; }
+#tools { position: fixed; right: 0; bottom:110px;  top: 71px; width: 350px; }
 #tools #toolslist { position: absolute; left:0; right:0; top:0; height: 183px; padding: 0; margin: 10px; border: 1px solid #aaa; background-color: #fff; overflow: hidden; }
 #tools #toolsused { position: absolute; left:0; right:0; bottom: 0; top: 193px; min-height: 100px; padding: 0; margin: 10px; border: 1px solid #aaa; background-color: #fff; overflow:scroll; }
-#tools .transformation { user-select: none; height: 35px; margin: 0; padding: 5px 10px; color: #aaa; border-bottom: 1px solid #aaa; cursor: pointer; }
-#tools .transformation:hover { color: #666; background-color: #fbfbfb; }
-#tools .transformation:active { color: #333; background-color: #eeeeee; }
+#tools .transformation { height: 35px; margin: 0; padding: 5px 10px; color: #666; border-bottom: 1px solid #aaa; cursor: pointer; }
+#tools #toolslist .transformation:hover { color: #666; background-color: #fbfbfb; }
+#tools #toolslist .transformation:active { color: #333; background-color: #eeeeee; }
+#tools .transformation #plusbutton, #tools .transformation #minusbutton { padding: 2px 10px 2px 0; width: 30px; height: 30px; display: inline; float: left; }
 #tools .transformation span { margin:0; padding:0; padding-top: 10px; float:left; display:block; width: 110px; }
-#tools #toolslist .transformation span { width: 240px; }
-#tools #toolsused .transformation .input { font-size: 14px; float: right; margin: 5px 0 5px 5px; }
-#tools #toolsused .transformation .input input { font-size: 14px; color: inherit; width: 25px; border: 0; padding: 5px; margin:0; }
-#snippet { position: fixed; bottom:0; left:0; right:0; height: 100px; margin: 10px; border: 1px solid #aaa; background-color: #fff; }
-#snippet textarea { margin: 0; padding: 0; border: 0; font-family: "Courier New"; font-size: 14px; }
+#tools #toolslist .transformation span { width: 200px; }
+#tools #toolsused .transformation { height: 55px; }
+#tools #toolsused .transformation .input { font-size: 12px; float: right; display:block; margin: 0 0 0 5px; }
+#tools #toolsused .transformation .input input { font-size: 12px; color: inherit; width: 1px; border: 0; padding: 5px 5px 0 5px; margin:0 0 5px 0; background: transparent; border-bottom: 1px solid #aaa; text-align: right; }
+#tools #toolsused .transformation .input input:focus { outline: none; border-bottom: 1px solid #aaa; }
+#snippet { position: fixed; bottom:0; left:0; right:0; height: 88px; margin: 10px; padding:5px; border: 1px solid #aaa; background-color: #fff; font-family: "Courier New"; font-size: 14px; resize:none; }
+#snippet:hover, #tools #toolsused:hover, #tools #toolslist:hover { border-color: #333; } 
+
 /*#wrapper #editpanel #tabbar { height: 25px; background: #fafafa; border-bottom: 1px solid #aaa; }
 
 /*
