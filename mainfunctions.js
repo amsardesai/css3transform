@@ -3,7 +3,7 @@
 // -----------------------------------
 // Variable Declarations
 
-var trans; // Global transformation array
+var trans = new Array(); // Global transformation array
 var I = [[1,0,0],[0,1,0],[0,0,1]]; // Identity matrix
 var curTrans = [[1,0,0],[0,1,0],[0,0,1]]; // Current transformation
 
@@ -48,7 +48,9 @@ function scale(n,x,y) {
 
 function rotate(n,d) {
 	r = d*(Math.PI/180);
-	m = [[Math.cos(r),-Math.sin(r),0],[Math.sin(r),Math.cos(r),0],[0,0,1]];
+	cosr = Math.cos(r);
+	sinr = Math.sin(r);
+	m = [[cosr,-sinr,0],[sinr,cosr,0],[0,0,1]];
 	return multM(n,m);
 }
 
@@ -57,7 +59,9 @@ function skew(n,x,y) {
 	//y = y==90?89:y;
 	rx = x*(Math.PI/180);
 	ry = y*(Math.PI/180);
-	m = [[1,Math.tan(rx),0],[Math.tan(ry),1,0],[0,0,1]];
+	tanrx = Math.tan(rx);
+	tanry = Math.tan(ry);
+	m = [[1,tanrx,0],[tanry,1,0],[0,0,1]];
 	return multM(n,m);
 }
 
@@ -97,28 +101,40 @@ function removeTransformation(n) {
 	calculateTransformation();
 }
 
-function modifyTransformation() {
-
+function modifyTransformation(n,t,arg1,arg2) {
+	trans[n].t = t;
+	trans[n].arg1 = arg1;
+	trans[n].arg2 = arg2;
 }
 
 // -----------------------------------
 // Porting to View
 
-function addToPage(transformation) {
+function refreshList() {
+
+
 
 
 }
 
 function displayTransformation() {
 	var obj = $("#workpanel #object");
-	var wWidth = $("#workpanel").width();
-	var wHeight = $("#workpanel").height();
+	var wWidth = $("#workpanel").width() - 350;
+	var wHeight = $("#workpanel").height() - 120;
 	var oWidth = obj.width();
 	var oHeight = obj.height();
 	var e = copyM(curTrans);
-	e = translate(e,wWidth/2-oWidth/2,wHeight/2-oHeight/2);
+	//e = translate(e,wWidth/2-oWidth/2,wHeight/2-oHeight/2);
+	
+	var i,j;
+	for (i=0;i<3;i++) 
+		for (j=0;j<3;j++) 
+			e[i][j] = Math.abs(e[i][j])<1E-4?0:e[i][j];
+
 	var mat = "matrix("+e[0][0]+","+e[1][0]+","+e[0][1]+","+e[1][1]+","+e[0][2]+","+e[1][2]+")";
 	obj.css("transform",mat);
+	obj.css("top",wHeight/2-oHeight/2);
+	obj.css("left",wWidth/2-oWidth/2);
 }
 
 function alertM(m) {
@@ -134,7 +150,6 @@ function alertM(m) {
 // jQuery Document Ready
 
 $(document).ready(function() {
-	trans = new Array();
 	$("#tools .transformation").attr('unselectable','on').css('user-select','none').on('selectstart',false);
 	displayTransformation();
 
@@ -165,13 +180,14 @@ $(document).ready(function() {
 	});	
 
 	$(window).resize(displayTransformation);
+	$("#tools .transformation input").attr("maxlength",6);
 
-	$("#tools .transformation input").autoGrowInput({
-		maxWidth: 40,
+/*	$("#tools .transformation input").autoGrowInput({
+		maxWidth: 60,
 		minWidth: 0,
-		comfortZone: 0
+		comfortZone: 10
 	});
-
+*/
 
 });
 
