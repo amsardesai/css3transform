@@ -24,7 +24,7 @@ body { font-family: "Donegal One", helvetica, arial, sans-serif; }
 #wrapper #workpanel #object { margin: auto; display:block; }
 #wrapper #toolslist { float: right; width: 258px; height: 183px; padding: 0; margin: 20px 10px 10px 10px; border: 1px solid #aaa; overflow: hidden;}
 #wrapper #toolsused { float: right; width: 258px; height: 237px; padding: 0; margin: 10px; border: 1px solid #aaa; overflow:scroll; }
-#wrapper .transformation { height: 35px; margin: 5px 0 0 0; padding: 0 10px 5px 10px; color: #aaa; border-bottom: 1px solid #aaa; cursor: pointer; }
+#wrapper .transformation { height: 35px; margin: 0; padding: 5px 10px; color: #aaa; border-bottom: 1px solid #aaa; cursor: pointer; }
 #wrapper .transformation:hover { color: #666; background-color: #fbfbfb; }
 #wrapper .transformation span { margin:0; padding:0; padding-top: 10px; float:left; display:block; width: 110px; }
 #wrapper #toolslist .transformation span { width: 240px; }
