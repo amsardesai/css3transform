@@ -1,3 +1,5 @@
+
+
 // -----------------------------------
 // Variable Declarations
 
@@ -108,7 +110,7 @@ function addToPage(transformation) {
 }
 
 function displayTransformation() {
-	var obj = $("#wrapper #workpanel #object");
+	var obj = $("#workpanel #object");
 	var e = copyM(curTrans);
 	var mat = "matrix("+e[0][0]+","+e[1][0]+","+e[0][1]+","+e[1][1]+","+e[0][2]+","+e[1][2]+")";
 	obj.css("transform",mat);
@@ -128,8 +130,10 @@ function alertM(m) {
 
 $(document).ready(function() {
 	trans = new Array();
+	$("#tools .transformation").attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false);
 
-	$("#wrapper #toolslist .transformation").click(function() {
+	$("#tools #toolslist .transformation").click(function() {
+		$();
 		switch ($(this).attr("id")) {
 			case "translate":
 				var tx = 10;
@@ -151,6 +155,8 @@ $(document).ready(function() {
 				addTransformation(3,dx,dy);
 			break;
 		}
+
 	});	
 });
+
 
