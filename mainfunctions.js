@@ -14,8 +14,6 @@ function multM(a,b) {
 	for (i=0;i<3;i++) {
 		for (j=0;j<3;j++) {
 			for (k=0;k<3;k++) {
-				if (a[i][k]==NaN) alert("a is not a number :(");
-				if (b[i][k]==NaN) alert("b is not a number :(");
 				m[i][j] += a[i][k]*b[k][j];
 			}
 		}
@@ -79,13 +77,14 @@ function calculateTransformation() {
 		else if (cur.t==2) curTrans = rotate(curTrans,cur.arg1);
 		else if (cur.t==3) curTrans = skew(curTrans,cur.arg1,cur.arg2);
 	}
+	displayTransformation();
 }
 
-function addTransformation(transformation,argument1,argument2) {
+function addTransformation(t,arg1,arg2) {
 	m = {
-		t: transformation,
-		arg1: argument1,
-		arg2: argument2
+		t: t,
+		arg1: arg1,
+		arg2: arg2
 	};
 	trans.push(m);
 	calculateTransformation();
@@ -94,6 +93,10 @@ function addTransformation(transformation,argument1,argument2) {
 function removeTransformation(n) {
 	trans.splice(n,1);
 	calculateTransformation();
+}
+
+function modifyTransformation() {
+
 }
 
 // -----------------------------------
@@ -105,7 +108,10 @@ function addToPage(transformation) {
 }
 
 function displayTransformation() {
-	obj = $("#wrapper #workpanel #object");
+	var obj = $("#wrapper #workpanel #object");
+	var e = copyM(curTrans);
+	var mat = "matrix("+e[0][0]+","+e[1][0]+","+e[0][1]+","+e[1][1]+","+e[0][2]+","+e[1][2]+")";
+	obj.css("transform",mat);
 }
 
 function alertM(m) {
