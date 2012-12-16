@@ -1,19 +1,20 @@
+// -----------------------------------
+// jQuery Document Ready
 
 $(document).ready(function() {
 	trans = new Array();
-	
+
 	$("#wrapper #toolslist .transformation").click(function() {
 		switch ($(this).attr("id")) {
 			case "translate":
-				var x = 10;
-				var y = 10;
-				addTransformation(0,x,y);
-				alert(x+" "+y);
+				var tx = 10;
+				var ty = 10;
+				addTransformation(0,tx,ty);
 			break;
 			case "scale":
-				var x = 2;
-				var y = 2;
-				addTransformation(1,x,y);
+				var fx = 2;
+				var fy = 2;
+				addTransformation(1,fx,fy);
 			break;
 			case "rotate":
 				var d = 45;
@@ -26,7 +27,4 @@ $(document).ready(function() {
 			break;
 		}
 	});	
-
-
 });
-

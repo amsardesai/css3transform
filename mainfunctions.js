@@ -1,7 +1,7 @@
 // -----------------------------------
 // Variable Declarations
 
-var trans[]; // Global transformation array
+var trans; // Global transformation array
 var I = [[1,0,0],[0,1,0],[0,0,1]]; // Identity matrix
 var curTrans = [[0,0,0],[0,0,0],[0,0,0]]; // Current transformation
 
@@ -10,18 +10,32 @@ var curTrans = [[0,0,0],[0,0,0],[0,0,0]]; // Current transformation
 
 function multM(a,b) {
 	var m = [[0,0,0],[0,0,0],[0,0,0]];
-	for (i=0;i<3;i++)
-		for (j=0;j<3;j++)
-			for (k=0;k<3;k++)
+	var i,j,k;
+	for (i=0;i<3;i++) {
+		for (j=0;j<3;j++) {
+			for (k=0;k<3;k++) {
+				if (a[i][k]==NaN) alert("a is not a number :(");
+				if (b[i][k]==NaN) alert("b is not a number :(");
 				m[i][j] += a[i][k]*b[k][j];
+			}
+		}
+	}
+	return m;
+}
+
+function copyM(a) {
+	var m = [[0,0,0],[0,0,0],[0,0,0]];
+	var i,j;
+	for (i=0;i<3;i++) {
+		for (j=0;j<3;j++) {
+			m[i][j] = a[i][j];
+		}
+	}
 	return m;
 }
 
 function translate(n,x,y) {
-	var m = [[0,0,0],[0,0,0],[0,0,0]];
-	for (i=0;i<3;i++) 
-		for (j=0;j<3;j++)
-			m[i][j] = n[i][j];
+	var m = copyM(n);
 	m[0][2] += x;
 	m[1][2] += y;
 	return m;
@@ -39,6 +53,8 @@ function rotate(n,d) {
 }
 
 function skew(n,x,y) {
+	//x = x==90?89:x;
+	//y = y==90?89:y;
 	rx = x*(Math.PI/180);
 	ry = y*(Math.PI/180);
 	m = [[1,Math.tan(rx),0],[Math.tan(ry),1,0],[0,0,1]];
@@ -53,38 +69,24 @@ function skew(n,x,y) {
 // 2 - Rotate 		(deg)
 // 3 - Skew 		(degx,degy)
 
-function Transformation(t,arg1,arg2) {
-	this.trans = t;
-	this.arg1 = arg1;
-	this.arg2 = arg2;
-}
-
 function calculateTransformation() {
-	curTrans = [[0,0,0],[0,0,0],[0,0,0]];
-	for (i=0;i<3;i++) 
-		for (j=0;j<3;j++)
-			curTrans[i][j] = I[i][j];
-
+	curTrans = copyM(I);
+	var i;
 	for (i=0;i<trans.length;i++) {
-		switch(trans[i].trans) {
-			case 0: // Translate
-				curTrans = translate(curTrans,trans[i].arg1,trans[i].arg2);
-			break;
-			case 1: // Scale
-				curTrans = scale(curTrans,trans[i].arg1,trans[i].arg2);
-			break;
-			case 2: // Rotate
-				curTrans = rotate(curTrans,trans[i].arg1);
-			break;
-			case 3: // Skew
-				curTrans = skew(curTrans,trans[i].arg1,trans[i].arg2);
-			break;
-		}
+		var cur = trans[i];
+		if (cur.t==0) curTrans = translate(curTrans,cur.arg1,cur.arg2);
+		else if (cur.t==1) curTrans = scale(curTrans,cur.arg1,cur.arg2);
+		else if (cur.t==2) curTrans = rotate(curTrans,cur.arg1);
+		else if (cur.t==3) curTrans = skew(curTrans,cur.arg1,cur.arg2);
 	}
 }
 
-function addTransformation(t,arg1,arg2) {
-	m = new Transformation(t,arg1,arg2);
+function addTransformation(transformation,argument1,argument2) {
+	m = {
+		t: transformation,
+		arg1: argument1,
+		arg2: argument2
+	};
 	trans.push(m);
 	calculateTransformation();
 }
@@ -96,22 +98,21 @@ function removeTransformation(n) {
 
 // -----------------------------------
 // Porting to View
-
+/*
 function addToPage(transformation) {
 
 
 }
 
 function displayTransformation() {
-	obj = $("#wrapper #workpanel #object");
+	//obj = $("#wrapper #workpanel #object");
 }
-
+*/
 function alertM(m) {
 	s="";
-	for (i=0;i<3;i++) for (j=0;j<3;j++) s+= " " + m[i][j];
+	var i,j;
+	for (i=0;i<3;i++) 
+		for (j=0;j<3;j++) 
+			s+= " " + m[i][j];
     alert(s);
 }
-
-// -----------------------------------
-// jQuery Document Ready
-
