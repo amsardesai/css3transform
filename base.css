@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Donegal+One);
+@import url(http://fonts.googleapis.com/css?family=Domine:400,700);
 
 
 /* CSS RESET */
@@ -15,16 +16,19 @@ input, select, textarea, button{ font-family: inherit; }
 
 /* CODE */
 
-body { font-family: "Donegal One", helvetica, arial, sans-serif; background-color: #FFE0B7;  }
+body { font-family: 'Domine', serif; background-color: #FFE0B7;  }
 
-#header { position: absolute; z-index: 20; top:0; left:0; right:0; height: 60px; padding: 10px 10px 0 30px; border-bottom: 1px solid #000;  margin: 0; background-color: #79C5FF; font-weight:100; font-size: 50px; overflow:hidden; min-width: 600px; }
+#header { font-family: "Donegal One", helvetica, arial, sans-serif; position: absolute; z-index: 20; top:0; left:0; right:0; height: 60px; padding: 10px 10px 0 30px; border-bottom: 1px solid #0091FF;  margin: 0; background-color: #79C5FF; font-weight:100; font-size: 50px; overflow:hidden; min-width: 600px; }
 #header #authorlabel { font-size: 25px; }
+#header #helpbutton { position: absolute; font-size: 24px; right:0; top:0; width: 20px; height: 20px; margin: 10px; text-align: center; padding: 15px; border: 1px solid #0A95FF; border-radius: 25px; background-color: #ADDCFF; cursor: pointer; }
+#header #helpbutton:hover { background-color: #D4ECFF; }
+#header #helpbutton:active { background-color: #fff; }
 #workpanel { position: absolute; left:0; bottom:0; right:0; top: 71px; margin:0; padding: 0; overflow:hidden; min-width: 640px; min-height: 480px; }
 #workpanel #svgcoordinates {  }
 #workpanel #object { width: 100px; height: 100px; position: absolute; z-index: 0; transition: transform .5s; -webkit-transition: -webkit-transform .5s; -moz-transition: -moz-transform .5s; -o-transition: -o-transform .5s; -ms-transition: -ms-transform .5s; }
 #tools { position: fixed; right: 0; bottom:150px;  top: 71px; width: 350px; }
-#tools #toolslist { opacity: 0.9; position: absolute; z-index: 20; left:0; right:0; top:0; height: 183px; padding: 0; margin: 10px; border: 1px solid #D28723; background-color: #fff; overflow: hidden; }
-#tools #toolsused { opacity: 0.9; position: absolute; z-index: 20; left:0; right:0; bottom: 0; top: 193px; min-height: 115px; padding: 0; margin: 10px; border: 1px solid #D28723; background-color: #fff; overflow:auto; }
+#tools #toolslist { opacity: 0.9; position: absolute; z-index: 1; left:0; right:0; top:0; height: 183px; padding: 0; margin: 10px; border: 1px solid #D28723; background-color: #fff; overflow: hidden; }
+#tools #toolsused { opacity: 0.9; position: absolute; z-index: 1; left:0; right:0; bottom: 0; top: 193px; min-height: 115px; padding: 0; margin: 10px; border: 1px solid #D28723; background-color: #fff; overflow:auto; }
 #tools .transformation { height: 35px; margin: 0; padding: 5px 10px; color: #AC6B14; border-bottom: 1px solid #D28723; }
 #tools #toolslist .transformation { cursor:pointer; }
 #tools #toolslist .transformation:hover { color: #AC6B14; background-color: #fbfbfb; }
@@ -44,10 +48,13 @@ body { font-family: "Donegal One", helvetica, arial, sans-serif; background-colo
 #snippet #matrix #grid { border-left: 2px solid #000; border-right: 2px solid #000; width: 193px; height: 100px; margin: 10px 2px; }
 #snippet #matrix #grid .row { padding: 0; margin: 0; height: 35px; width: 192px; }
 #snippet #matrix #grid .row .cell { padding: 5px 0; margin:0; height: 25px; width: 64px; float: left; text-align: center; overflow: hidden; }
-#snippet #textarea { position: absolute; left:210px; right: 200px; top:0; bottom:0; height: 128px; border:0; margin:0; padding:5px; border-right: 1px solid #D28723; border-left: 1px solid #D28723; }
+#snippet #textarea { position: absolute; left:210px; right: 0; top:0; bottom:0; height: 128px; border:0; margin:0; padding:5px; border-left: 1px solid #D28723; }
 #snippet #textarea span { display: block; font-size: 14px;  height: 20px; }
 #snippet #textarea textarea { resize:none; width: 100%; height: 108px; margin:0; border:0; padding:0; font-family: "Courier New"; font-size: 14px; background-color: transparent; color: #000; outline: none; }
 #snippet:hover, #tools #toolsused:hover, #tools #toolslist:hover { opacity: 1;} 
+#help { position: absolute; left:0; bottom:0; right:0; top:71px; z-index: 2; background-color: #fff; opacity:.95; display: none; }
+#help p { margin: 40px; }
+#help strong { font-weight: 700; }
 
 /*
 AC6B14

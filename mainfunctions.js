@@ -197,6 +197,7 @@ function alertM(m) {
 
 $(document).ready(function() {
 	$("#tools #toolslist .transformation").attr('unselectable','on').css('user-select','none').on('selectstart',false);
+	$("#header").attr('unselectable','on').css('user-select','none').on('selectstart',false);
 	displayTransformation();
 	refreshList();
 
@@ -225,6 +226,11 @@ $(document).ready(function() {
 	});
 
 	$(window).resize(displayTransformation);
+
+	$("#header #helpbutton").click(function() {
+		$("#help").fadeToggle(250);
+	});
+
 
 });
 
