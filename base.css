@@ -17,14 +17,14 @@ input, select, textarea, button{ font-family: inherit; }
 
 body { font-family: "Donegal One", helvetica, arial, sans-serif; background-color: #FFE0B7;  }
 
-#header { position: absolute; z-index: 20; top:0; left:0; right:0; height: 60px; padding: 10px 10px 0 30px; border-bottom: 1px solid #000;  margin: 0; background-color: #79C5FF; font-weight:100; font-size: 50px; overflow:hidden; min-width: 640px; }
+#header { position: absolute; z-index: 20; top:0; left:0; right:0; height: 60px; padding: 10px 10px 0 30px; border-bottom: 1px solid #000;  margin: 0; background-color: #79C5FF; font-weight:100; font-size: 50px; overflow:hidden; min-width: 600px; }
 #header #authorlabel { font-size: 25px; }
-#workpanel { position: absolute; left:0; bottom:0; right:0; top: 71px; margin:0; padding: 0; overflow:hidden; }
+#workpanel { position: absolute; left:0; bottom:0; right:0; top: 71px; margin:0; padding: 0; overflow:hidden; min-width: 640px; min-height: 480px; }
 #workpanel #svgcoordinates {  }
 #workpanel #object { width: 100px; height: 100px; position: absolute; z-index: 0; transition: transform .5s; -webkit-transition: -webkit-transform .5s; -moz-transition: -moz-transform .5s; -o-transition: -o-transform .5s; -ms-transition: -ms-transform .5s; }
-#tools { position: fixed; right: 0; bottom:110px;  top: 71px; width: 350px; }
+#tools { position: fixed; right: 0; bottom:150px;  top: 71px; width: 350px; }
 #tools #toolslist { opacity: 0.9; position: absolute; z-index: 20; left:0; right:0; top:0; height: 183px; padding: 0; margin: 10px; border: 1px solid #D28723; background-color: #fff; overflow: hidden; }
-#tools #toolsused { opacity: 0.9; position: absolute; z-index: 20; left:0; right:0; bottom: 0; top: 193px; min-height: 100px; padding: 0; margin: 10px; border: 1px solid #D28723; background-color: #fff; overflow:auto; }
+#tools #toolsused { opacity: 0.9; position: absolute; z-index: 20; left:0; right:0; bottom: 0; top: 193px; min-height: 115px; padding: 0; margin: 10px; border: 1px solid #D28723; background-color: #fff; overflow:auto; }
 #tools .transformation { height: 35px; margin: 0; padding: 5px 10px; color: #AC6B14; border-bottom: 1px solid #D28723; }
 #tools #toolslist .transformation { cursor:pointer; }
 #tools #toolslist .transformation:hover { color: #AC6B14; background-color: #fbfbfb; }
@@ -39,11 +39,31 @@ body { font-family: "Donegal One", helvetica, arial, sans-serif; background-colo
 #tools #toolsused .transformation .input input { font-size: 12px; color: inherit; width: 50px; border: 0; padding: 2px 2px 0 2px; margin:0 0 1px 0; background: transparent; border-bottom: 1px solid #D28723; text-align: right; }
 #tools #toolsused .transformation .input input:focus { outline: none; border-bottom: 1px solid #D28723; }
 #tools #toolsused .notransformation { text-align: center; font-size: 14px; padding: 20px; color: #AC6B14; }
-#snippet { position: absolute; z-index: 20; bottom:0; left:0; right:0; height: 88px; margin: 10px; padding:5px; border: 1px solid #D28723; background-color: #fff; font-family: "Courier New"; font-size: 14px; opacity:0.9; }
-#snippet textarea { resize:none; position: absolute; left:0; top:0; bottom:0; right: 300px; border:0; border-right: 1px solid #D28723; margin:0; padding:5px;  }
+#snippet { position: absolute; z-index: 20; bottom:0; left:0; right:0; height: 128px; margin: 10px; padding:5px; border: 1px solid #D28723; background-color: #fff; opacity:0.9; }
+#snippet #matrix { position: absolute; left:0; top:0; bottom:0; width: 210px; padding: 5px; margin:0; font-size: 14px;  } 
+#snippet #matrix #grid { border-left: 2px solid #000; border-right: 2px solid #000; width: 193px; height: 100px; margin: 10px 2px; }
+#snippet #matrix #grid .row { padding: 0; margin: 0; height: 35px; width: 192px; }
+#snippet #matrix #grid .row .cell { padding: 5px 0; margin:0; height: 25px; width: 64px; float: left; text-align: center; overflow: hidden; }
+#snippet textarea { resize:none; position: absolute; left:210px; top:0; bottom:0; right: 100px; border:0; border-right: 1px solid #D28723; border-left: 1px solid #D28723; margin:0; padding:5px; font-family: "Courier New"; font-size: 14px;  }
 #snippet:hover, #tools #toolsused:hover, #tools #toolslist:hover { opacity: 1;} 
 
 /*
 AC6B14
+
+
+
+|  0.333  0.333  0.333  |
+|  |
+|  |
+
+
+
+
+
+
+
+
+
+
 
 */

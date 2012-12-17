@@ -13,24 +13,14 @@ var curTrans = [[1,0,0],[0,1,0],[0,0,1]]; // Current transformation
 function multM(a,b) {
 	var m = [[0,0,0],[0,0,0],[0,0,0]];
 	var i,j,k;
-	for (i=0;i<3;i++) {
-		for (j=0;j<3;j++) {
-			for (k=0;k<3;k++) {
-				m[i][j] += a[i][k]*b[k][j];
-			}
-		}
-	}
+	for (i=0;i<3;i++) for (j=0;j<3;j++) for (k=0;k<3;k++) m[i][j]+=a[i][k]*b[k][j];
 	return m;
 }
 
 function copyM(a) {
 	var m = [[0,0,0],[0,0,0],[0,0,0]];
 	var i,j;
-	for (i=0;i<3;i++) {
-		for (j=0;j<3;j++) {
-			m[i][j] = a[i][j];
-		}
-	}
+	for (i=0;i<3;i++) for (j=0;j<3;j++) m[i][j]=a[i][j];
 	return m;
 }
 
@@ -42,26 +32,17 @@ function translate(n,x,y) {
 }
 
 function scale(n,x) {
-	m = [[x,0,0],[0,x,0],[0,0,1]];
+	var m = [[x,0,0],[0,x,0],[0,0,1]];
 	return multM(n,m);
 }
 
 function rotate(n,d) {
-	r = d*(Math.PI/180);
-	cosr = Math.cos(r);
-	sinr = Math.sin(r);
-	m = [[cosr,-sinr,0],[sinr,cosr,0],[0,0,1]];
+	var m = [[Math.cos(d*Math.PI/180),-Math.sin(d*Math.PI/180),0],[Math.sin(d*Math.PI/180),Math.cos(d*Math.PI/180),0],[0,0,1]];
 	return multM(n,m);
 }
 
 function skew(n,x,y) {
-	//x = x==90?89:x;
-	//y = y==90?89:y;
-	rx = x*(Math.PI/180);
-	ry = y*(Math.PI/180);
-	tanrx = Math.tan(rx);
-	tanry = Math.tan(ry);
-	m = [[1,tanrx,0],[tanry,1,0],[0,0,1]];
+	m = [[1,Math.tan(x*Math.PI/180),0],[Math.tan(y*Math.PI/180),1,0],[0,0,1]];
 	return multM(n,m);
 }
 
@@ -110,7 +91,7 @@ function modifyTransformation(n,arg,val) {
 }
 
 // -----------------------------------
-// Porting to View
+// View
 
 function refreshList() {
 
@@ -142,28 +123,31 @@ function refreshList() {
 		container.append(curObj);
 	}
 
-	if (trans.length==0) {
-		container.append($("<div>").addClass("notransformation").html("Click a transformation above to add to the list."));
-	}
+	if (trans.length==0) container.append($("<div>").addClass("notransformation").html("Click a transformation above to add to the list."));
+	else container.append($("<div>").addClass("notransformation").html(trans.length + " transformation" + (trans.length!=1?"s":"")));
 
 	$("#tools .transformation input").attr("maxlength",6);
 
 	// Controller for removing 
-	$("#tools #toolsused .transformation .button").click(function() {
-		removeTransformation($(this).parent().attr("name"));
-	});
+	$("#tools #toolsused .transformation .button").click(function() {removeTransformation($(this).parent().attr("name"));});
 
 	// Controller for typing
 	$("#tools #toolsused .transformation .input input").on("load change keyup", function() {
-		modifyTransformation($(this).parent().parent().attr("name"),$(this).attr("name"),$(this).val());
-	});
+
+		var i = parseInt($(this).parent().parent().attr("name"));
+		var x = $(this).val();
+		if (x==""||x=="-"||x==".") x=(trans[i].t==1?1:0);
+		modifyTransformation(i,$(this).attr("name"),x);
+	}).limitkeypress();
+
+
 }
 
 function displayTransformation() {
 	var obj = $("#workpanel #object");
 	var e = copyM(curTrans);
 
-	var i,j;
+	var i,j,k;
 	for (i=0;i<3;i++) 
 		for (j=0;j<3;j++) 
 			e[i][j] = Math.abs(e[i][j])<1E-4?0:e[i][j];
@@ -172,6 +156,15 @@ function displayTransformation() {
 	obj.css("transform",mat);
 	obj.css("top",($("#workpanel").height()-120)/2-(obj.height())/2);
 	obj.css("left",($("#workpanel").width()-350)/2-(obj.width())/2);
+
+	$("#snippet #matrix #grid .row").each(function(i) {
+		$(this).find(".cell").each(function(j) {
+			var k = " " + e[i][j];
+			k = k.substring(1,7);
+			$(this).html(k);
+		});
+	});
+
 }
 
 function alertM(m) {
@@ -184,7 +177,7 @@ function alertM(m) {
 }
 
 // -----------------------------------
-// jQuery Document Ready
+// Startup code
 
 $(document).ready(function() {
 	$("#tools #toolslist .transformation").attr('unselectable','on').css('user-select','none').on('selectstart',false);
