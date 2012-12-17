@@ -39,12 +39,14 @@ body { font-family: "Donegal One", helvetica, arial, sans-serif; background-colo
 #tools #toolsused .transformation .input input { font-size: 12px; color: inherit; width: 50px; border: 0; padding: 2px 2px 0 2px; margin:0 0 1px 0; background: transparent; border-bottom: 1px solid #D28723; text-align: right; }
 #tools #toolsused .transformation .input input:focus { outline: none; border-bottom: 1px solid #D28723; }
 #tools #toolsused .notransformation { text-align: center; font-size: 14px; padding: 20px; color: #AC6B14; }
-#snippet { position: absolute; z-index: 20; bottom:0; left:0; right:0; height: 128px; margin: 10px; padding:5px; border: 1px solid #D28723; background-color: #fff; opacity:0.9; }
-#snippet #matrix { position: absolute; left:0; top:0; bottom:0; width: 210px; padding: 5px; margin:0; font-size: 14px;  } 
+#snippet { position: absolute; z-index: 1; bottom:0; left:0; right:0; height: 128px; margin: 10px; padding:5px; border: 1px solid #D28723; background-color: #fff; opacity:0.9; }
+#snippet #matrix { position: absolute; left:0; top:0; bottom:0; width: 200px; padding: 5px; margin:0; font-size: 14px;  } 
 #snippet #matrix #grid { border-left: 2px solid #000; border-right: 2px solid #000; width: 193px; height: 100px; margin: 10px 2px; }
 #snippet #matrix #grid .row { padding: 0; margin: 0; height: 35px; width: 192px; }
 #snippet #matrix #grid .row .cell { padding: 5px 0; margin:0; height: 25px; width: 64px; float: left; text-align: center; overflow: hidden; }
-#snippet textarea { resize:none; position: absolute; left:210px; top:0; bottom:0; right: 100px; border:0; border-right: 1px solid #D28723; border-left: 1px solid #D28723; margin:0; padding:5px; font-family: "Courier New"; font-size: 14px;  }
+#snippet #textarea { position: absolute; left:210px; right: 200px; top:0; bottom:0; height: 128px; border:0; margin:0; padding:5px; border-right: 1px solid #D28723; border-left: 1px solid #D28723; }
+#snippet #textarea span { display: block; font-size: 14px;  height: 20px; }
+#snippet #textarea textarea { resize:none; width: 100%; height: 108px; margin:0; border:0; padding:0; font-family: "Courier New"; font-size: 14px; background-color: transparent; color: #000; outline: none; }
 #snippet:hover, #tools #toolsused:hover, #tools #toolslist:hover { opacity: 1;} 
 
 /*

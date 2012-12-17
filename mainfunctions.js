@@ -32,7 +32,9 @@ function translate(n,x,y) {
 }
 
 function scale(n,x) {
-	var m = [[x,0,0],[0,x,0],[0,0,1]];
+	var m;
+	if (x==0) m = [[0,0,0],[0,0,0],[0,0,0]]
+	else m = [[x,0,0],[0,x,0],[0,0,1]];
 	return multM(n,m);
 }
 
@@ -42,7 +44,13 @@ function rotate(n,d) {
 }
 
 function skew(n,x,y) {
-	m = [[1,Math.tan(x*Math.PI/180),0],[Math.tan(y*Math.PI/180),1,0],[0,0,1]];
+	var m;
+	var tanrx = Math.tan(x*Math.PI/180);
+	var tanry = Math.tan(y*Math.PI/180);
+	var dx = Math.abs(x-90)%180;
+	var dy = Math.abs(y-90)%180;
+	if (dx<1||dx>179||dy<1||dy>179) m = [[0,0,0],[0,0,0],[0,0,0]];
+	else m = [[1,tanrx,0],[tanry,1,0],[0,0,1]];
 	return multM(n,m);
 }
 
@@ -110,7 +118,7 @@ function refreshList() {
 		else if (trans[i].t==1)
 			curObj.addClass("tScale")
 				.find("span").html("Scale").end()
-				.find(".input").html("Scale Factor: <input type='text' name='1' value='" + trans[i].arg1 + "'> times");
+				.find(".input").html("Scale Factor: <input type='text' name='1' value='" + trans[i].arg1 + "'>");
 		else if (trans[i].t==2)
 			curObj.addClass("tRotate")
 				.find("span").html("Rotate").end()
@@ -150,12 +158,19 @@ function displayTransformation() {
 	var i,j,k;
 	for (i=0;i<3;i++) 
 		for (j=0;j<3;j++) 
-			e[i][j] = Math.abs(e[i][j])<1E-4?0:e[i][j];
+			e[i][j] = Math.abs(e[i][j])<1E-4?0:(Math.floor(e[i][j]*1000)/1000);
 
 	var mat = "matrix("+e[0][0]+","+e[1][0]+","+e[0][1]+","+e[1][1]+","+e[0][2]+","+e[1][2]+")";
 	obj.css("transform",mat);
 	obj.css("top",($("#workpanel").height()-120)/2-(obj.height())/2);
 	obj.css("left",($("#workpanel").width()-350)/2-(obj.width())/2);
+
+	var str = "transform: " + mat + "; \/\* General \*\/\n";
+	str += "-webkit-transform: " + mat + "; \/\* Chrome and Safari \*\/\n";
+	str += "-moz-transform: " + mat + "; \/\* Firefox \*\/\n";
+	str += "-o-transform: " + mat + "; \/\* Opera \*\/\n";
+	str += "-ms-transform: " + mat + "; \/\* MSIE 10 \*\/\n";
+	$("#snippet #textarea textarea").val(str);
 
 	$("#snippet #matrix #grid .row").each(function(i) {
 		$(this).find(".cell").each(function(j) {
@@ -164,6 +179,7 @@ function displayTransformation() {
 			$(this).html(k);
 		});
 	});
+
 
 }
 
