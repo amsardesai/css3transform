@@ -37,7 +37,8 @@ body { font-family: "Donegal One", helvetica, arial, sans-serif; background-colo
 #tools #toolsused .transformation .input { font-size: 12px; float: right; display:block; margin: 2px 0 0 5px; }
 #tools #toolsused .transformation .input input { font-size: 12px; color: inherit; width: 50px; border: 0; padding: 2px 2px 0 2px; margin:0 0 5px 0; background: transparent; border-bottom: 1px solid #D28723; text-align: right; }
 #tools #toolsused .transformation .input input:focus { outline: none; border-bottom: 1px solid #D28723; }
-#snippet { position: absolute; z-index: 20; bottom:0; left:0; right:0; height: 88px; margin: 10px; padding:5px; border: 1px solid #D28723; background-color: #fff; font-family: "Courier New"; font-size: 14px; resize:none; }
+#tools #toolsused .notransformation { text-align: center; font-size: 14px; padding: 20px; color: #AC6B14; }
+#snippet { position: absolute; z-index: 20; bottom:0; left:0; right:0; height: 88px; margin: 10px; padding:5px; border: 1px solid #D28723; background-color: #fff; font-family: "Courier New"; font-size: 14px; }
 #snippet:hover, #tools #toolsused:hover, #tools #toolslist:hover { opacity: 1;} 
 
 /*

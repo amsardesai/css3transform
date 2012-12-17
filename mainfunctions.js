@@ -118,30 +118,28 @@ function refreshList() {
 			<a class="button" href="#"></a>
 			<span>Translate</span>
 			<div class="input">
-				x-axis: <input type="text" name="xcoords"> pixels<br />
-				y-axis: <input type="text" name="ycoords"> pixels
+				x-axis: <input type='text' name='xcoords'> pixels<br />y-axis: <input type='text' name='ycoords'> pixels
 			</div>
 		</div>
 		<div class="transformation tScale">
 			<a class="button" href="#"></a>
 			<span>Scale</span>
-			<div class="input">
-				factor: <input type="text" name="factor"> times
+			<div class='input'>
+				factor: <input type='text' name='factor'> times
 			</div>
 		</div>
 		<div class="transformation tRotate">
 			<a class="button" href="#"></a>
 			<span>Rotate</span>
 			<div class="input">
-				angle: <input type="text" name="angle"> degrees
+				angle: <input type='text' name='angle'> degrees
 			</div>
 		</div>
 		<div class="transformation tSkew">
 			<a class="button" href="#"></a>
 			<span>Skew</span>
 			<div class="input">
-				x-axis: <input type="text" name="xcoords"> degrees<br />
-				y-axis: <input type="text" name="ycoords"> degrees
+				x-axis: <input type='text' name='xcoords'> degrees<br />y-axis: <input type='text' name='ycoords'> degrees
 			</div>
 		</div>
 	*/
@@ -150,39 +148,47 @@ function refreshList() {
 	container.html(" ");
 	var i;
 	for (i=0;i<trans.length;i++) {
-		var cur = trans[i];
-		var curObj = $("<div>").addClass("transformation").attr("name",i+1);
-		curObj.append($("<a>").addClass("button").attr("href","#"));
-		if (cur.t==0) {
+		var curObj = $("<div>").addClass("transformation").attr("name",i)
+			.append($("<a>").addClass("button").attr("href","#"))
+			.append($("<span>"))
+			.append($("<div>").addClass("input"));
+		if (trans[i].t==0)
 			curObj.addClass("tTranslate")
-				.append($("<span>").html("Translate"));
-		} else if (cur.t==1) { 
+				.find("span").html("Translate").end()
+				.find(".input").html("x-axis: <input type='text' name='transx'> pixels<br />y-axis: <input type='text' name='transy'> pixels");
+		else if (trans[i].t==1)
 			curObj.addClass("tScale")
-				.append($("<span>").html("Scale"));
-		} else if (cur.t==2) {
+				.find("span").html("Scale").end()
+				.find(".input").html("factor: <input type='text' name='scalefactor'> times");
+		else if (trans[i].t==2)
 			curObj.addClass("tRotate")
-				.append($("<span>").html("Rotate"));
-		} else if (cur.t==3) { 
+				.find("span").html("Rotate").end()
+				.find(".input").html("angle: <input type='text' name='rotateangle'> degrees");
+		else if (trans[i].t==3)
 			curObj.addClass("tSkew")
-				.append($("<span>").html("Skew"));
-		}
+				.find("span").html("Skew").end()
+				.find(".input").html("x-axis: <input type='text' name='skewx'> degrees<br />y-axis: <input type='text' name='skewy'> degrees");
+
 		container.append(curObj);
 	}
 
-
+	if (trans.length==0) {
+		container.append($("<div>").addClass("notransformation").html("Click a transformation above to add to the list."));
+	}
 
 	$("#tools .transformation input").attr("maxlength",6);
+
+	// Controller for removing 
+	$("#tools #toolsused .transformation .button").click(function() {
+		var id = $(this).parent().attr("name");
+		removeTransformation(id);
+	});
 }
 
 function displayTransformation() {
 	var obj = $("#workpanel #object");
-	var wWidth = $("#workpanel").width() - 350;
-	var wHeight = $("#workpanel").height() - 120;
-	var oWidth = obj.width();
-	var oHeight = obj.height();
 	var e = copyM(curTrans);
-	//e = translate(e,wWidth/2-oWidth/2,wHeight/2-oHeight/2);
-	
+
 	var i,j;
 	for (i=0;i<3;i++) 
 		for (j=0;j<3;j++) 
@@ -209,6 +215,7 @@ function alertM(m) {
 $(document).ready(function() {
 	$("#tools #toolslist .transformation").attr('unselectable','on').css('user-select','none').on('selectstart',false);
 	displayTransformation();
+	refreshList();
 
 	// Controller for adding
 	$("#tools #toolslist .transformation .button").click(function() {
@@ -232,13 +239,6 @@ $(document).ready(function() {
 				addTransformation(3,dx,dy);
 			break;
 		}
-	});
-
-	// Controller for removing
-	$("#tools #toolsused .transformation .button").click(function() {
-		alert("hi");
-		var id = $(this).parent().attr("name");
-		removeTransformation(id);
 	});
 
 	$(window).resize(displayTransformation);
