@@ -36,13 +36,13 @@ function copyM(a) {
 
 function translate(n,x,y) {
 	var m = copyM(n);
-	m[0][2] += x;
-	m[1][2] += y;
+	m[0][2] += parseInt(x);
+	m[1][2] += parseInt(y);
 	return m;
 }
 
-function scale(n,x,y) {
-	m = [[x,0,0],[0,y,0],[0,0,1]];
+function scale(n,x) {
+	m = [[x,0,0],[0,x,0],[0,0,1]];
 	return multM(n,m);
 }
 
@@ -79,7 +79,7 @@ function calculateTransformation() {
 	for (i=0;i<trans.length;i++) {
 		var cur = trans[i];
 		if (cur.t==0) curTrans = translate(curTrans,cur.arg1,cur.arg2);
-		else if (cur.t==1) curTrans = scale(curTrans,cur.arg1,cur.arg2);
+		else if (cur.t==1) curTrans = scale(curTrans,cur.arg1);
 		else if (cur.t==2) curTrans = rotate(curTrans,cur.arg1);
 		else if (cur.t==3) curTrans = skew(curTrans,cur.arg1,cur.arg2);
 	}
@@ -103,46 +103,16 @@ function removeTransformation(n) {
 	refreshList();
 }
 
-function modifyTransformation(n,t,arg1,arg2) {
-	trans[n].t = t;
-	trans[n].arg1 = arg1;
-	trans[n].arg2 = arg2;
+function modifyTransformation(n,arg,val) {
+	if (arg==1) trans[n].arg1 = val;
+	else if (arg==2) trans[n].arg2 = val;
+	calculateTransformation();
 }
 
 // -----------------------------------
 // Porting to View
 
 function refreshList() {
-/*
-		<div class="transformation tTranslate">
-			<a class="button" href="#"></a>
-			<span>Translate</span>
-			<div class="input">
-				x-axis: <input type='text' name='xcoords'> pixels<br />y-axis: <input type='text' name='ycoords'> pixels
-			</div>
-		</div>
-		<div class="transformation tScale">
-			<a class="button" href="#"></a>
-			<span>Scale</span>
-			<div class='input'>
-				factor: <input type='text' name='factor'> times
-			</div>
-		</div>
-		<div class="transformation tRotate">
-			<a class="button" href="#"></a>
-			<span>Rotate</span>
-			<div class="input">
-				angle: <input type='text' name='angle'> degrees
-			</div>
-		</div>
-		<div class="transformation tSkew">
-			<a class="button" href="#"></a>
-			<span>Skew</span>
-			<div class="input">
-				x-axis: <input type='text' name='xcoords'> degrees<br />y-axis: <input type='text' name='ycoords'> degrees
-			</div>
-		</div>
-	*/
 
 	var container = $("#tools #toolsused");
 	container.html(" ");
@@ -155,19 +125,19 @@ function refreshList() {
 		if (trans[i].t==0)
 			curObj.addClass("tTranslate")
 				.find("span").html("Translate").end()
-				.find(".input").html("x-axis: <input type='text' name='transx'> pixels<br />y-axis: <input type='text' name='transy'> pixels");
+				.find(".input").html("X-Axis: <input type='text' name='1' value='" + trans[i].arg1 + "'> pixels<br />Y-Axis: <input type='text' name='2' value='" + trans[i].arg2 + "'> pixels");
 		else if (trans[i].t==1)
 			curObj.addClass("tScale")
 				.find("span").html("Scale").end()
-				.find(".input").html("factor: <input type='text' name='scalefactor'> times");
+				.find(".input").html("Scale Factor: <input type='text' name='1' value='" + trans[i].arg1 + "'> times");
 		else if (trans[i].t==2)
 			curObj.addClass("tRotate")
 				.find("span").html("Rotate").end()
-				.find(".input").html("angle: <input type='text' name='rotateangle'> degrees");
+				.find(".input").html("Angle: <input type='text' name='1' value='" + trans[i].arg1 + "'> degrees");
 		else if (trans[i].t==3)
 			curObj.addClass("tSkew")
 				.find("span").html("Skew").end()
-				.find(".input").html("x-axis: <input type='text' name='skewx'> degrees<br />y-axis: <input type='text' name='skewy'> degrees");
+				.find(".input").html("X-Axis: <input type='text' name='1' value='" + trans[i].arg1 + "'> degrees<br />Y-Axis: <input type='text' name='2' value='" + trans[i].arg2 + "'> degrees");
 
 		container.append(curObj);
 	}
@@ -180,8 +150,12 @@ function refreshList() {
 
 	// Controller for removing 
 	$("#tools #toolsused .transformation .button").click(function() {
-		var id = $(this).parent().attr("name");
-		removeTransformation(id);
+		removeTransformation($(this).parent().attr("name"));
+	});
+
+	// Controller for typing
+	$("#tools #toolsused .transformation .input input").on("load change keyup", function() {
+		modifyTransformation($(this).parent().parent().attr("name"),$(this).attr("name"),$(this).val());
 	});
 }
 
@@ -218,8 +192,8 @@ $(document).ready(function() {
 	refreshList();
 
 	// Controller for adding
-	$("#tools #toolslist .transformation .button").click(function() {
-		switch ($(this).parent().attr("id")) {
+	$("#tools #toolslist .transformation").click(function() {
+		switch ($(this).attr("id")) {
 			case "translate":
 				var tx = 0;
 				var ty = 0;

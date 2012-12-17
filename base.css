@@ -25,7 +25,8 @@ body { font-family: "Donegal One", helvetica, arial, sans-serif; background-colo
 #tools { position: fixed; right: 0; bottom:110px;  top: 71px; width: 350px; }
 #tools #toolslist { opacity: 0.9; position: absolute; z-index: 20; left:0; right:0; top:0; height: 183px; padding: 0; margin: 10px; border: 1px solid #D28723; background-color: #fff; overflow: hidden; }
 #tools #toolsused { opacity: 0.9; position: absolute; z-index: 20; left:0; right:0; bottom: 0; top: 193px; min-height: 100px; padding: 0; margin: 10px; border: 1px solid #D28723; background-color: #fff; overflow:auto; }
-#tools .transformation { height: 35px; margin: 0; padding: 5px 10px; color: #AC6B14; border-bottom: 1px solid #D28723;  }
+#tools .transformation { height: 35px; margin: 0; padding: 5px 10px; color: #AC6B14; border-bottom: 1px solid #D28723; }
+#tools #toolslist .transformation { cursor:pointer; }
 #tools #toolslist .transformation:hover { color: #AC6B14; background-color: #fbfbfb; }
 #tools .transformation .button { margin: 2px 10px 2px 0; width: 30px; height: 30px; display: block; float: left; cursor: pointer; }
 #tools #toolslist .transformation .button { background-image: url(plus.svg); }
@@ -34,11 +35,12 @@ body { font-family: "Donegal One", helvetica, arial, sans-serif; background-colo
 #tools #toolsused .transformation .deleteT { float:left; display:block; font-size: 12px; }
 #tools #toolsused .tTranslate, #tools #toolsused .tSkew { height: 50px; }
 #tools #toolsused .tScale, #tools #toolsused .tRotate { height: 32px; }
-#tools #toolsused .transformation .input { font-size: 12px; float: right; display:block; margin: 2px 0 0 5px; }
-#tools #toolsused .transformation .input input { font-size: 12px; color: inherit; width: 50px; border: 0; padding: 2px 2px 0 2px; margin:0 0 5px 0; background: transparent; border-bottom: 1px solid #D28723; text-align: right; }
+#tools #toolsused .transformation .input { font-size: 12px; float: right; display:block; margin: 6px 5px 0 5px; }
+#tools #toolsused .transformation .input input { font-size: 12px; color: inherit; width: 50px; border: 0; padding: 2px 2px 0 2px; margin:0 0 1px 0; background: transparent; border-bottom: 1px solid #D28723; text-align: right; }
 #tools #toolsused .transformation .input input:focus { outline: none; border-bottom: 1px solid #D28723; }
 #tools #toolsused .notransformation { text-align: center; font-size: 14px; padding: 20px; color: #AC6B14; }
-#snippet { position: absolute; z-index: 20; bottom:0; left:0; right:0; height: 88px; margin: 10px; padding:5px; border: 1px solid #D28723; background-color: #fff; font-family: "Courier New"; font-size: 14px; }
+#snippet { position: absolute; z-index: 20; bottom:0; left:0; right:0; height: 88px; margin: 10px; padding:5px; border: 1px solid #D28723; background-color: #fff; font-family: "Courier New"; font-size: 14px; opacity:0.9; }
+#snippet textarea { resize:none; position: absolute; left:0; top:0; bottom:0; right: 300px; border:0; border-right: 1px solid #D28723; margin:0; padding:5px;  }
 #snippet:hover, #tools #toolsused:hover, #tools #toolslist:hover { opacity: 1;} 
 
 /*
