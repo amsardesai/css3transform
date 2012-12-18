@@ -1,6 +1,6 @@
 <!-- 
 This page was designed and developed by Ankit Sardesai.
-Created: July 2012
+Created: December 2012
 -->
 <!DOCTYPE html>
 <html>
@@ -19,8 +19,23 @@ Created: July 2012
 	<div id="helpbutton">?</div>
 </div>
 
-	<div id="workpanel">
-		<object type="image/svg+xml" data="object.svg" id="object"><span/></object>
+<div id="workpanel">
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="object">
+		<rect x="35.5" y="-35.5" width="71" height="71" style="fill:#FFAA39;stroke-width:2;stroke:#000" transform="rotate(45)" />
+		<line x1="50" y1="0" x2="50" y2="100" style="stroke:rgb(0,0,0);stroke-width:2;stroke-linecap:round;" />
+		<line x1="0" y1="50" x2="100" y2="50" style="stroke:rgb(0,0,0);stroke-width:2;stroke-linecap:round;" />
+		<rect x="1" y="1" width="98" height="98" style="fill: transparent;stroke:#000;stroke-width:2" />
+		<rect x="40" y="20" width="20" height="40" style="fill:#FFF;stroke-width:0;" />
+		<polygon points="30,30 50,10 70,30" style="fill:#FFF;stroke-width:0;" />
+		<line x1="40" y1="60" x2="60" y2="60" style="stroke:rgb(0,0,0);stroke-width:1;stroke-linecap:round;" />
+		<line x1="60" y1="60" x2="60" y2="30" style="stroke:rgb(0,0,0);stroke-width:1;stroke-linecap:round;" />
+		<line x1="40" y1="60" x2="40" y2="30" style="stroke:rgb(0,0,0);stroke-width:1;stroke-linecap:round;" />
+		<line x1="30" y1="30" x2="40" y2="30" style="stroke:rgb(0,0,0);stroke-width:1;stroke-linecap:round;" />
+		<line x1="60" y1="30" x2="70" y2="30" style="stroke:rgb(0,0,0);stroke-width:1;stroke-linecap:round;" />
+		<line x1="30" y1="30" x2="50" y2="10" style="stroke:rgb(0,0,0);stroke-width:1;stroke-linecap:round;" />
+		<line x1="70" y1="30" x2="50" y2="10" style="stroke:rgb(0,0,0);stroke-width:1;stroke-linecap:round;" />
+		<text x="44" y="30" style="font-size: 12px; font-family: sans-serif;">up</text>
+	</svg>
 
 
 	<div id="tools">
@@ -72,16 +87,62 @@ Created: July 2012
 		<a href="http://www.ankitsardesai.ca/" id="credits">This tool was created by Ankit Sardesai</a>
 	</div>
 	
-	</div>
+</div>
 
 	<div id="help">
 		<h1>What is<span class="titlefont"> css3 transform</span>?</h1>
 		<p>
 			<strong class="titlefont">css3 transform</strong> is a tool for calculating the matrix equivalent of a series of transformations to a CSS element. The newest version of CSS (CSS3) allows developers to transform elements with various combinations of translating, scaling, rotating, and skewing. Since each individual transformation can be represented by a single matrix, multiplying these matrices together will result in a single matrix that can represent a series of transformations. 
 		</p>
-		<h1>Understanding transformation matrices</h1>
+		<h1>Understanding linear transformations</h1>
 		<p>
-			A transformation matrix is simply a 3&times;3 matrix that maps a two dimensional coordinate space into a new "transformed" coordinate space. What exactly does this mean? Consider the following: 
+			A transformation matrix (in two dimensional space) is simply a 3&times;3 matrix that maps the two dimensional coordinate space into a new "transformed" coordinate space. What exactly does this mean? Consider the following: 
+		</p>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="120">
+			<line x1="30" y1="15" x2="30" y2="95" style="stroke:#000;stroke-width:4;stroke-linecap:round;" />
+			<line x1="30" y1="95" x2="110" y2="95" style="stroke:#000;stroke-width:4;stroke-linecap:round;" />
+			<line x1="30" y1="15" x2="27" y2="23" style="stroke:#000;stroke-width:3;stroke-linecap:round;" />
+			<line x1="30" y1="15" x2="33" y2="23" style="stroke:#000;stroke-width:3;stroke-linecap:round;" />
+			<line x1="27" y1="23" x2="33" y2="23" style="stroke:#000;stroke-width:3;stroke-linecap:round;" />
+			<line x1="110" y1="95" x2="102" y2="92" style="stroke:#000;stroke-width:3;stroke-linecap:round;" />
+			<line x1="110" y1="95" x2="102" y2="98" style="stroke:#000;stroke-width:3;stroke-linecap:round;" />
+			<line x1="102" y1="92" x2="102" y2="98" style="stroke:#000;stroke-width:3;stroke-linecap:round;" />
+			<line x1="330" y1="10" x2="330" y2="70" style="stroke:#000;stroke-width:4;stroke-linecap:round;" />
+			<line x1="330" y1="70" x2="390" y2="92" style="stroke:#000;stroke-width:4;stroke-linecap:round;" />
+			<line x1="330" y1="10" x2="327" y2="18" style="stroke:#000;stroke-width:3;stroke-linecap:round;" />
+			<line x1="330" y1="10" x2="333" y2="18" style="stroke:#000;stroke-width:3;stroke-linecap:round;" />
+			<line x1="327" y1="18" x2="333" y2="18" style="stroke:#000;stroke-width:3;stroke-linecap:round;" />
+			<line x1="390" y1="92" x2="384" y2="85" style="stroke:#000;stroke-width:3;stroke-linecap:round;" />
+			<line x1="390" y1="92" x2="382" y2="92" style="stroke:#000;stroke-width:3;stroke-linecap:round;" />
+			<line x1="384" y1="85" x2="382" y2="92" style="stroke:#000;stroke-width:3;stroke-linecap:round;" />
+			<text x="95" y="85" style="font-size:12px;">x-axis</text>
+			<text x="395" y="80" style="font-size:12px;">x-axis</text>
+			<text x="40" y="20" style="font-size:12px;">y-axis</text>
+			<text x="340" y="15" style="font-size:12px;">y-axis</text>
+			<rect x="150" y="2" width="150" height="110" style="fill:#EEE;stroke:#000;stroke-width:2;" />
+			<text x="176" y="75" style="font-family:'Courier New',monospace;">skewX(20)</text>
+			<text x="176" y="95" style="font-family:'Courier New',monospace;">rotate(20)</text>
+			<rect x="130" y="20" width="40" height="20" style="stroke-width:0;fill:#fff;" />
+			<polygon points="160,50 160,10 185,30" style="stroke-width:0;fill:#fff;" />
+			<line x1="130" y1="20" x2="160" y2="20" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="130" y1="20" x2="130" y2="40" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="130" y1="40" x2="160" y2="40" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="160" y1="40" x2="160" y2="50" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="160" y1="20" x2="160" y2="10" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="160" y1="10" x2="185" y2="30" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="160" y1="50" x2="185" y2="30" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<rect x="260" y="20" width="40" height="20" style="stroke-width:0;fill:#fff;" />
+			<polygon points="290,50 290,10 315,30" style="stroke-width:0;fill:#fff;" />
+			<line x1="260" y1="20" x2="290" y2="20" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="260" y1="20" x2="260" y2="40" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="260" y1="40" x2="290" y2="40" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="290" y1="40" x2="290" y2="50" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="290" y1="20" x2="290" y2="10" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="290" y1="10" x2="315" y2="30" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="290" y1="50" x2="315" y2="30" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+		</svg>
+		<p>
+			Since every single point in the old coordinate space is mapped into a new one, this can be used to map entire images pixel by pixel, and thus perform a transformation. 
 		</p>
 	</div>
 </body>

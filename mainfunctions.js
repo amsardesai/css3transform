@@ -112,19 +112,19 @@ function refreshList() {
 		if (trans[i].t==0)
 			curObj.addClass("tTranslate")
 				.find("span").html("Translate").end()
-				.find(".input").html("X-Axis: <input type='text' name='1' value='" + trans[i].arg1 + "'> pixels<br />Y-Axis: <input type='text' name='2' value='" + trans[i].arg2 + "'> pixels");
+				.find(".input").html("X-Axis: <input type='text' name='1' value='" + trans[i].arg1 + "'> pixels <br /> Y-Axis: <input type='text' name='2' value='" + trans[i].arg2 + "'> pixels");
 		else if (trans[i].t==1)
 			curObj.addClass("tScale")
 				.find("span").html("Scale").end()
-				.find(".input").html("Scale Factor: <input type='text' name='1' value='" + trans[i].arg1 + "'>");
+				.find(".input").html("Scale Factor: <input type='text' name='1' value='" + trans[i].arg1 + "'> ");
 		else if (trans[i].t==2)
 			curObj.addClass("tRotate")
 				.find("span").html("Rotate").end()
-				.find(".input").html("Angle: <input type='text' name='1' value='" + trans[i].arg1 + "'> degrees");
+				.find(".input").html("Angle: <input type='text' name='1' value='" + trans[i].arg1 + "'> degrees ");
 		else if (trans[i].t==3)
 			curObj.addClass("tSkew")
 				.find("span").html("Skew").end()
-				.find(".input").html("X-Axis: <input type='text' name='1' value='" + trans[i].arg1 + "'> degrees<br />Y-Axis: <input type='text' name='2' value='" + trans[i].arg2 + "'> degrees");
+				.find(".input").html("X-Axis: <input type='text' name='1' value='" + trans[i].arg1 + "'> degrees <br /> Y-Axis: <input type='text' name='2' value='" + trans[i].arg2 + "'> degrees");
 
 		container.append(curObj);
 	}
@@ -139,14 +139,11 @@ function refreshList() {
 
 	// Controller for typing
 	$("#tools #toolsused .transformation .input input").on("load change keyup", function() {
-
 		var i = parseInt($(this).parent().parent().attr("name"));
 		var x = $(this).val();
 		if (x==""||x=="-"||x==".") x=(trans[i].t==1?1:0);
 		modifyTransformation(i,$(this).attr("name"),x);
 	}).limitkeypress();
-
-
 }
 
 function displayTransformation() {
@@ -154,9 +151,7 @@ function displayTransformation() {
 	var e = copyM(curTrans);
 
 	var i,j,k;
-	for (i=0;i<3;i++) 
-		for (j=0;j<3;j++) 
-			e[i][j] = Math.abs(e[i][j])<1E-4?0:(Math.floor(e[i][j]*1000)/1000);
+	for (i=0;i<3;i++) for (j=0;j<3;j++) e[i][j] = Math.abs(e[i][j])<1E-4?0:(Math.floor(e[i][j]*1000)/1000);
 
 	var mat = "matrix("+e[0][0]+","+e[1][0]+","+e[0][1]+","+e[1][1]+","+e[0][2]+","+e[1][2]+")";
 	obj.css("transform",mat);
@@ -172,9 +167,7 @@ function displayTransformation() {
 
 	$("#snippet #matrix #grid .row").each(function(i) {
 		$(this).find(".cell").each(function(j) {
-			var k = " " + e[i][j];
-			k = k.substring(1,7);
-			$(this).html(k);
+			$(this).html((" " + e[i][j]).substring(1,7));
 		});
 	});
 
