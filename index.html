@@ -142,8 +142,137 @@ Created: December 2012
 			<line x1="290" y1="50" x2="315" y2="30" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
 		</svg>
 		<p>
-			Since every single point in the old coordinate space is mapped into a new one, this can be used to map entire images pixel by pixel, and thus perform a transformation. 
+			Since every single point in the old coordinate space is mapped into a new one, this can be used to map entire images pixel by pixel, and thus perform a transformation. The matrix representation of this would be the following:
 		</p>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="120">
+			<line x1="10" y1="10" x2="10" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="10" y1="10" x2="20" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="10" y1="110" x2="20" y2="110" style="stroke:#000;stroke-width:2;" />
+			<line x1="190" y1="10" x2="190" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="190" y1="10" x2="180" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="190" y1="110" x2="180" y2="110" style="stroke:#000;stroke-width:2;" />
+			<text x="50" y="33" style="font-size:13px;text-anchor:middle;">1.135</text>
+			<text x="100" y="33" style="font-size:13px;text-anchor:middle;">4.332</text>
+			<text x="150" y="33" style="font-size:13px;text-anchor:middle;">40</text>
+			<text x="50" y="63" style="font-size:13px;text-anchor:middle;">2.319</text>
+			<text x="100" y="63" style="font-size:13px;text-anchor:middle;">5.117</text>
+			<text x="150" y="63" style="font-size:13px;text-anchor:middle;">-30</text>
+			<text x="50" y="93" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="100" y="93" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="150" y="93" style="font-size:13px;text-anchor:middle;">1</text>
+			<line x1="200" y1="10" x2="200" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="200" y1="10" x2="210" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="200" y1="110" x2="210" y2="110" style="stroke:#000;stroke-width:2;" />
+			<line x1="260" y1="10" x2="260" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="260" y1="10" x2="250" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="260" y1="110" x2="250" y2="110" style="stroke:#000;stroke-width:2;" />
+			<text x="230" y="33" style="font-size:13px;text-anchor:middle;">x</text>
+			<text x="230" y="63" style="font-size:13px;text-anchor:middle;">y</text>
+			<text x="230" y="93" style="font-size:13px;text-anchor:middle;">0</text>
+			<line x1="300" y1="10" x2="300" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="300" y1="10" x2="310" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="300" y1="110" x2="310" y2="110" style="stroke:#000;stroke-width:2;" />
+			<line x1="360" y1="10" x2="360" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="360" y1="10" x2="350" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="360" y1="110" x2="350" y2="110" style="stroke:#000;stroke-width:2;" />
+			<text x="330" y="33" style="font-size:13px;text-anchor:middle;">x&rsquo;</text>
+			<text x="330" y="63" style="font-size:13px;text-anchor:middle;">y&rsquo;</text>
+			<text x="330" y="93" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="280" y="68" style="font-size:20px;text-anchor:middle;">=</text>
+		</svg>
+		<h1>Different transformation matrices</h1>
+		<p>
+			Every individual transformation applied to an element can be represented by a matrix. Multiplication of these matrices result in a single matrix that can represent a series of transformations.
+		</p>
+		<p>
+			So what kinds of transformations can we apply? To start off, there is the translation matrix:
+		</p>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="120">
+			<line x1="10" y1="10" x2="10" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="10" y1="10" x2="20" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="10" y1="110" x2="20" y2="110" style="stroke:#000;stroke-width:2;" />
+			<line x1="190" y1="10" x2="190" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="190" y1="10" x2="180" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="190" y1="110" x2="180" y2="110" style="stroke:#000;stroke-width:2;" />
+			<text x="50" y="33" style="font-size:13px;text-anchor:middle;">1</text>
+			<text x="100" y="33" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="150" y="33" style="font-size:13px;text-anchor:middle;">dx</text>
+			<text x="50" y="63" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="100" y="63" style="font-size:13px;text-anchor:middle;">1</text>
+			<text x="150" y="63" style="font-size:13px;text-anchor:middle;">dy</text>
+			<text x="50" y="93" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="100" y="93" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="150" y="93" style="font-size:13px;text-anchor:middle;">1</text>
+		</svg>
+		<p>
+			This matrix is a modification of the identity matrix, with the addition of two variables on the last column. These two variables, <strong>dx</strong> and <strong>dy</strong>, represent the x and y coordinate translations (in pixels) respectively.
+		</p>
+		<p>
+			Another common transformation is scaling. The scaling matrix is also very simple:
+		</p>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="120">
+			<line x1="10" y1="10" x2="10" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="10" y1="10" x2="20" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="10" y1="110" x2="20" y2="110" style="stroke:#000;stroke-width:2;" />
+			<line x1="190" y1="10" x2="190" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="190" y1="10" x2="180" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="190" y1="110" x2="180" y2="110" style="stroke:#000;stroke-width:2;" />
+			<text x="50" y="33" style="font-size:13px;text-anchor:middle;">fx</text>
+			<text x="100" y="33" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="150" y="33" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="50" y="63" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="100" y="63" style="font-size:13px;text-anchor:middle;">fy</text>
+			<text x="150" y="63" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="50" y="93" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="100" y="93" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="150" y="93" style="font-size:13px;text-anchor:middle;">1</text>
+		</svg>
+		<p>
+			The variables <strong>fx</strong> and <strong>fy</strong> represent the scale factors of this particular transformation. 
+		</p>
+		<p>
+			Skewing is another transformation that simply skews the image (tilts it along the x and y axes). The transformation matrix for a skewing matrix is a bit more complicated:
+		</p>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="120">
+			<line x1="10" y1="10" x2="10" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="10" y1="10" x2="20" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="10" y1="110" x2="20" y2="110" style="stroke:#000;stroke-width:2;" />
+			<line x1="190" y1="10" x2="190" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="190" y1="10" x2="180" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="190" y1="110" x2="180" y2="110" style="stroke:#000;stroke-width:2;" />
+			<text x="50" y="33" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="100" y="33" style="font-size:13px;text-anchor:middle;">tan(&theta;x)</text>
+			<text x="150" y="33" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="50" y="63" style="font-size:13px;text-anchor:middle;">tan(&theta;y)</text>
+			<text x="100" y="63" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="150" y="63" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="50" y="93" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="100" y="93" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="150" y="93" style="font-size:13px;text-anchor:middle;">1</text>
+		</svg>
+		<p>
+			The angles <strong>&theta;x</strong> and <strong>&theta;y</strong> represent the skew angles along both the x and y axis.
+		</p>
+		<p>
+			Last but certainly not the least is the rotation transformation. The transformation matrix is unique because it is simply a combination of scaling and skewing, and all that is needed is an angle <strong>&theta;</strong> to rotate the object on screen. The transformation matrix is the following:
+		</p>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="120">
+			<line x1="10" y1="10" x2="10" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="10" y1="10" x2="20" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="10" y1="110" x2="20" y2="110" style="stroke:#000;stroke-width:2;" />
+			<line x1="190" y1="10" x2="190" y2="110" style="stroke:#000;stroke-width:2;stroke-linecap:round;" />
+			<line x1="190" y1="10" x2="180" y2="10" style="stroke:#000;stroke-width:2;" />
+			<line x1="190" y1="110" x2="180" y2="110" style="stroke:#000;stroke-width:2;" />
+			<text x="50" y="33" style="font-size:13px;text-anchor:middle;">cos(&theta;)</text>
+			<text x="100" y="33" style="font-size:13px;text-anchor:middle;">-sin(&theta;)</text>
+			<text x="150" y="33" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="50" y="63" style="font-size:13px;text-anchor:middle;">sin(&theta;)</text>
+			<text x="100" y="63" style="font-size:13px;text-anchor:middle;">cos(&theta;)</text>
+			<text x="150" y="63" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="50" y="93" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="100" y="93" style="font-size:13px;text-anchor:middle;">0</text>
+			<text x="150" y="93" style="font-size:13px;text-anchor:middle;">1</text>
+		</svg>
 	</div>
 </body>
 
