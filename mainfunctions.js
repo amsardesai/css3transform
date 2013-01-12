@@ -187,7 +187,7 @@ function alertM(m) {
 // Startup code
 
 $(document).ready(function() {
-	if (Modernizr.svg && Modernizr.csstransitions && Modernizr.csstransforms) {
+	if (Modernizr.svg && Modernizr.inlinesvg && Modernizr.csstransitions && Modernizr.csstransforms) {
 		$("#noscript").css("display", "none");
 	}
 
