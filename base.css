@@ -18,6 +18,12 @@ input, select, textarea, button{ font-family: inherit; }
 
 body { font-family: 'Domine', serif; background-color: #FFE0B7;  }
 
+#noscript { display:block; position: absolute; z-index: 100; top:0; bottom:0; left:0; right:0; background-color: #fff; font-size: 15px; }
+#noscript h1 { font-size: 25px; font-weight: 700; padding: 10px;  }
+#noscript p { padding: 10px;  }
+#noscript ul { padding-left: 30px; }
+#noscript li { list-style: disc; line-height: 1.3; }
+
 #header { font-family: "Donegal One", helvetica, arial, sans-serif; position: absolute; z-index: 20; top:0; left:0; right:0; height: 60px; padding: 10px 10px 0 30px; border-bottom: 1px solid #0091FF;  margin: 0; background-color: #79C5FF; font-weight:100; font-size: 50px; overflow:hidden; min-width: 600px; }
 #header #helpbutton { position: absolute; font-size: 24px; right:0; top:0; width: 20px; height: 20px; margin: 10px; text-align: center; padding: 15px; border: 1px solid #0A95FF; border-radius: 25px; background-color: #ADDCFF; cursor: pointer; }
 #header #helpbutton:hover { background-color: #D4ECFF; }

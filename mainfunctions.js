@@ -187,6 +187,10 @@ function alertM(m) {
 // Startup code
 
 $(document).ready(function() {
+	if (Modernizr.svg && Modernizr.csstransitions && Modernizr.csstransforms) {
+		$("#noscript").css("display", "none");
+	}
+
 	$("#tools #toolslist .transformation").attr('unselectable','on').css('user-select','none').on('selectstart',false);
 	$("#header").attr('unselectable','on').css('user-select','none').on('selectstart',false);
 	displayTransformation();

@@ -9,6 +9,7 @@ Created: December 2012
 	<title>CSS3 Helper</title>
 	<link rel="stylesheet" href="base.css" type="text/css" />
 	<script src="plugins.js" type="text/javascript"></script>
+	<script src="modernizr.js" type="text/javascript"></script>
 	<script src="mainfunctions.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
@@ -23,6 +24,19 @@ Created: December 2012
 </head>
 
 <body>
+
+<div id="noscript">
+	<h1>Cannot load application</h1>
+	<p>Either your browser doesn't have JavaScript on or it is not supported. Currently, the only supported browsers are:</p>
+	<ul>
+		<li>Internet Explorer 9+</li>
+		<li>Mozilla Firefox 4+</li>
+		<li>Google Chrome 7+</li>
+		<li>Apple Safari 5.1+</li>
+		<li>Opera 11.6+</li>
+	</ul>
+	<p>Please switch to one of these supported browsers.</p>
+</div>
 
 <div id="header">
 	css3 transform
