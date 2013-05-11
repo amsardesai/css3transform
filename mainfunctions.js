@@ -1,12 +1,14 @@
-// -----------------------------------
-// Variable Declarations
+/**
+* Variable Declarations
+*/
 
 var trans = new Array(); // Global transformation array
 var I = [[1,0,0],[0,1,0],[0,0,1]]; // Identity matrix
 var curTrans = [[1,0,0],[0,1,0],[0,0,1]]; // Current transformation
 
-// -----------------------------------
-// Matrix Modification
+/**
+* Matrix Modification
+*/
 
 function multM(a,b) {
 	var m = [[0,0,0],[0,0,0],[0,0,0]];
@@ -52,13 +54,14 @@ function skew(n,x,y) {
 	return multM(n,m);
 }
 
-// -----------------------------------
-// Functionality and Calculation
-// Transformation type:
-// 0 - Translate 	(x,y)
-// 1 - Scale 		(scalex,scaley)
-// 2 - Rotate 		(deg)
-// 3 - Skew 		(degx,degy)
+/**
+* Functionality and Calculation
+* Transformation type:
+* 0 - Translate 	(x,y)
+* 1 - Scale 		(scalex,scaley)
+* 2 - Rotate 		(deg)
+* 3 - Skew 		(degx,degy)
+*/
 
 function calculateTransformation() {
 	curTrans = copyM(I);
@@ -96,8 +99,9 @@ function modifyTransformation(n,arg,val) {
 	calculateTransformation();
 }
 
-// -----------------------------------
-// View
+/**
+* View
+*/
 
 function refreshList() {
 
@@ -183,8 +187,9 @@ function alertM(m) {
     alert(s);
 }
 
-// -----------------------------------
-// Startup code
+/**
+* Startup code
+*/
 
 $(document).ready(function() {
 	if (Modernizr.svg && Modernizr.inlinesvg && Modernizr.csstransitions && Modernizr.csstransforms) {
@@ -228,5 +233,3 @@ $(document).ready(function() {
 
 
 });
-
-
